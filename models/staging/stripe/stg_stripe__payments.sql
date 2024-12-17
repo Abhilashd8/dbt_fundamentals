@@ -1,8 +1,8 @@
 select 
 ID as payment_id, 
 ORDERID as order_id, 
-PAYMENTMETHOD, 
+PAYMENTMETHOD as payment_method, 
 STATUS as status, 
-AMOUNT as amount, 
-CREATED as created, 
-_BATCHED_AT as batched_at from raw.stripe.payment
+AMOUNT/100 as amount, 
+CREATED as created_at
+from raw.stripe.payment

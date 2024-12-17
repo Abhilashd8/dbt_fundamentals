@@ -6,7 +6,7 @@ with customers as (
 
 orders as ( 
 
-    select * from {{ ref('stg_jaffle_shop__orders') }}
+    select * from {{ ref('fct_orders') }}
 
 ),
 
@@ -22,8 +22,7 @@ customer_orders as (
         min(order_date) as first_order_date,
         max(order_date) as most_recent_order_date,
         count(orders.order_id) as number_of_orders,
-        sum(case when payment.status = 'success' 
-                then payment.amount end) as lifetime_value
+        sum(amount) as lifetime_value
     from orders  
     inner join payments as payment using (order_id)
 
