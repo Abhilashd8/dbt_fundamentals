@@ -3,4 +3,4 @@ select
     first_name,
     REPLACE (last_name,'.','') as last_name
 
-from raw.jaffle_shop.customers
+from {{ source('jaffle_shop', 'customers') }}
