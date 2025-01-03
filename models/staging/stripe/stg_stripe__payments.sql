@@ -1,3 +1,10 @@
+with 
+ payments as (
+    select * from {{ source('stripe', 'payment') }}
+ ),
+
+
+final as (
 select 
 ID as payment_id, 
 ORDERID as order_id, 
@@ -6,4 +13,6 @@ STATUS as status,
 AMOUNT/100 as amount, 
 CREATED as created_at
 --_batched_at as _batched_at
-from {{ source('stripe', 'payment') }}
+from payments
+)
+select * from final

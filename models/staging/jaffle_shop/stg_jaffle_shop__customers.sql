@@ -1,6 +1,17 @@
+with 
+
+customers as (
+    select * from {{ source('jaffle_shop', 'customers') }}
+),
+
+transformation as (
+
 select
     id as customer_id,
-    first_name,
-    REPLACE (last_name,'.','') as last_name
+    first_name as customer_first_name,
+    last_name as customer_last_name,
+    first_name || ' '|| last_name as full_name
+from customers
+)
 
-from {{ source('jaffle_shop', 'customers') }}
+select * from transformation
