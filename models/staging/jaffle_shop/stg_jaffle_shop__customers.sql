@@ -8,8 +8,8 @@ transformation as (
 
 select
     id as customer_id,
-    first_name as givenname,
-    last_name as surname,
+    first_name as customer_first_name,
+    last_name as customer_last_name,
     first_name || ' '|| last_name as full_name
 from customers
 )
