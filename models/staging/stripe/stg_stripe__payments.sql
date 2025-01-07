@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized = 'table'
+    )
+}}
+
 with 
  payments as (
     select * from {{ source('stripe', 'payment') }}
@@ -10,7 +16,10 @@ ID as payment_id,
 ORDERID as order_id, 
 PAYMENTMETHOD as payment_method, 
 STATUS as status, 
-AMOUNT/100 as amount, 
+
+-- Converting amount cents to dollers
+{{ cent_to_doller('amount',4) }} as amount, 
+
 CREATED as created_at
 --_batched_at as _batched_at
 from payments

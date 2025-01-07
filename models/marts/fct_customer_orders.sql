@@ -61,5 +61,4 @@ final as (
 
 -- Simple Select Statement
 
-select * from final where customer_id = 57
-order by order_id 
+select * from final {{m_ord_status()}}

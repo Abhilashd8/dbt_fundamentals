@@ -1,6 +1,6 @@
 {{
     config(
-        materialized='view'
+        materialized='table'
     )
 }}
 
@@ -17,10 +17,10 @@ final as (select
     status as order_status,
     current_timestamp() as _etl_loaded_at,
     row_number() over (
-    partition by user_id order by order_date, id
+    partition by user_id order by order_placed_at, id
     ) as user_order_seq
 
 from orders 
 )
 
-select * from final
+select * from final 
