@@ -53,7 +53,8 @@ final as (
     first_value(order_placed_at) over (
       partition by paid_orders.customer_id
       order by order_placed_at
-      ) as fdos
+      ) as fdos,
+      {{ avg_value }} as dynamic_avg_value
 
     from paid_orders
 	left join customers on paid_orders.customer_id = customers.customer_id
