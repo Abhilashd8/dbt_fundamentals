@@ -1,3 +1,5 @@
+/*==============DBT_STAGE_MODEL================*/
+
 {{
     config (
         materialized = 'table'
